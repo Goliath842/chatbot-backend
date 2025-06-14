@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_API_URL = process.env.GEMINI_API_URL;
 const GEMINI_API_MODEL = process.env.GEMINI_API_MODEL;
