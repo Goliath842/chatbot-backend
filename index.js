@@ -11,7 +11,8 @@ app.use(express.json());
 app.use(cors());
 
 const PORT = process.env.PORT || 3001;
-
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const GEMINI_API_URL = process.env.GEMINI_API_URL;
 const BOT_TOKEN = process.env.BOT_TOKEN;
 
 app.listen(PORT, () => {
