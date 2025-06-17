@@ -12,7 +12,6 @@ app.use(cors());
 const PORT = process.env.PORT || 3001;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_API_URL = process.env.GEMINI_API_URL;
-const GEMINI_API_MODEL = process.env.GEMINI_API_MODEL;
 const BOT_TOKEN = process.env.BOT_TOKEN;
 
 app.listen(PORT, () => {
@@ -48,7 +47,7 @@ app.post('/api/chat', async (req, res) => {
 
     try {
         const geminiResponse = await axios.post(
-            `${GEMINI_API_URL}/models/${GEMINI_API_MODEL}:generateContent?key=${GEMINI_API_KEY}`,
+            `${GEMINI_API_URL}:generateContent?key=${GEMINI_API_KEY}`,
         {
             contents:[
                 {
