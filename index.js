@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 3001;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_API_URL = process.env.GEMINI_API_URL;
 const GEMINI_API_MODEL = process.env.GEMINI_API_MODEL;
+const BOT_TOKEN = process.env.BOT_TOKEN;
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
@@ -22,6 +23,24 @@ app.listen(PORT, () => {
         console.log('GEMINI_API_KEY is set.');
     }
 });
+
+app.post('/api/webhook', async (req, res) => {
+  const { message } = req.body;
+  if (!message?.text) return res.sendStatus(200);
+
+  const chatId = message.chat.id;
+  const menuText = message.text;
+
+  console.log('Tin nhắn nhận:', menuText);
+
+  await axios.post(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+    chat_id: chatId,
+    text: `🍽 Đã nhận menu: "${menuText}". Đang xử lý...`
+  });
+
+  res.sendStatus(200);
+});
+
 
 app.post('/api/chat', async (req, res) => {
 
